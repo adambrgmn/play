@@ -5,19 +5,20 @@
   "author": "Adam Bergman <adam@fransvilhelm.com>",
   "license": "MIT",
   "type": "module",
-  "main": "./lib/main.mjs",
-  "types": "./lib/main.d.mts",
+  "main": "./dist/main.mjs",
+  "types": "./dist/main.d.mts",
   "exports": {
     ".": {
-      "types": "./lib/main.d.mts",
-      "import": "./lib/main.mjs"
+      "types": "./dist/main.d.mts",
+      "import": "./dist/main.mjs"
     },
     "./promise": {
-      "types": "./lib/promise.d.mts",
-      "import": "./lib/promise.mjs"
+      "types": "./dist/promise.d.mts",
+      "import": "./dist/promise.mjs"
     }
   },
   "files": [
+    "./dist",
     "./lib"
   ],
   "engines": {
@@ -31,10 +32,10 @@
   ],
   "scripts": {
     "build": "tsc -b tsconfig.build.json",
-    "test": "node --loader tsx --test",
-    "test:coverage": "c8 --check-coverage --all node --loader tsx --test",
+    "test": "node --loader tsx --test ./lib/*.test.mts",
+    "test:coverage": "c8 --check-coverage --all node --loader tsx --test ./lib/*.test.mts",
     "type-check": "tsc --noEmit",
-    "lint": "eslint . --ext js,ts,mjs,tsx --ignore-path .gitignore",
+    "lint": "eslint . --ext mts --ignore-path .gitignore",
     "format": "prettier . --write --ignore-path .gitignore",
     "prepare": "husky install"
   },
@@ -55,6 +56,9 @@
   "c8": {
     "src": [
       "./lib"
+    ],
+    "extension": [
+      ".mts"
     ]
   }
 }

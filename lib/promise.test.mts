@@ -105,12 +105,7 @@ test('PromiseProps.any', async (t) => {
   });
 });
 
-/**
- * @template T
- * @param {PromiseLike<T>} p
- * @returns {T | unknown}
- */
-function unwrap(p) {
+function unwrap<T>(p: PromiseLike<T>): T | unknown {
   return p.then(
     (r) => r,
     (e) => e,
@@ -118,5 +113,5 @@ function unwrap(p) {
 }
 
 function delay(ms = 0) {
-  return new Promise((r) => setTimeout(r, ms));
+  return new Promise<void>((r) => setTimeout(r, ms));
 }
