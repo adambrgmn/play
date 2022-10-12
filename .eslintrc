@@ -5,5 +5,8 @@
   "env": {
     "es2022": true,
     "node": true
+  },
+  "rules": {
+    "prefer-const": "off"
   }
 }
